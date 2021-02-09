@@ -16,29 +16,18 @@ def main():
     pygame.display.set_caption("Test")
 
     #背景
-    background = pygame.transform.smoothscale(Tools.load_png('background_1.jpg')[0], screen_size)
+    background_1 = pygame.transform.smoothscale(Tools.load_png('background_1.png')[0], screen_size)
+    background_1_alpha = 10
+    background_1.set_alpha(background_1_alpha)
 
     #文本
-    font_big = pygame.font.Font("data\\沐瑶软笔手写体(Muyao-Softbrush).ttf", 52)
-    font_small = pygame.font.Font("data\\沐瑶软笔手写体(Muyao-Softbrush).ttf", 32)
-    text_1 = font_big.render("车  万  憨  批  传", 1, (10, 10, 10))
-    text_2 = font_small.render("(点击屏幕开始游戏)", 1, (10, 10, 10))
-    textpos = text_1.get_rect()
-    textpos.centerx = background.get_rect().centerx
-    textpos = textpos.move(0, 50)
-    background.blit(text_1, textpos)
-    textpos.centerx = background.get_rect().centerx
-    textpos = textpos.move(20, 100)
-    background.blit(text_2, textpos)
-
-    #blit
-    screen.blit(background, (0, 0))
-    pygame.display.flip()
+    text_1 = pygame.font.Font("data\\沐瑶软笔手写体(Muyao-Softbrush).ttf", 64).render("车  万  憨  批  传", 1, (10, 10, 10))
+    text_2 = pygame.font.Font("data\\沐瑶软笔手写体(Muyao-Softbrush).ttf", 32).render("(点击屏幕开始游戏)", 1, (10, 10, 10))
 
     #break
     break_1 = False
 
-    #Stage_1： 
+    #----------Stage_1----------
     while True:
         #event
         for event in pygame.event.get():
@@ -50,15 +39,25 @@ def main():
             elif event.type == MOUSEBUTTONDOWN:
                 print(0)
                 break_1 = True
-                print(2)
+                print(1)
 
         #检测是否退出
         if break_1:
             break
 
+        #::::时间轴::::
+        #--background alpha:
+        if background_1_alpha < 255:
+            background_1_alpha += 1
+            background_1.set_alpha( background_1_alpha )
+
         #System
-        screen.blit(background, (0, 0))
-        pygame.display.flip()
+        screen.blit(background_1, (0, 0))
+        screen.blit(text_1, (100, 50))
+        screen.blit(text_2, (180, 150))
+        pygame.display.update()
+
+        print(init_clock.get_fps())
         init_clock.tick_busy_loop(60)
 
 

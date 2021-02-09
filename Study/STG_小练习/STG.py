@@ -75,6 +75,7 @@ def main():
         screen.blit(background, (0, 0))
         player.blit_on(screen)
         pygame.display.flip()
+
         init_clock.tick_busy_loop(60)
 
 
