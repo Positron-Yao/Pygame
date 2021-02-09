@@ -60,7 +60,10 @@ def main():
         print(init_clock.get_fps())
         init_clock.tick_busy_loop(60)
 
+    #----------Stage_2----------
 
+
+    #------------End------------
     print("Thank you!")
 
 if __name__ == '__main__':
